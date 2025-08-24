@@ -1,0 +1,32 @@
+/* Load Tailwind */
+@import "tailwindcss" source("..");
+
+/* (Optional) If your pages are PHP/Blade, be explicit */
+@source "./**/*.php";
+
+/* (Optional) your tokens */
+@theme {
+  --color-brand: #6750ff;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+@layer utilities {
+
+  .navbar-fixed{
+    @apply fixed z-[9999] bg-white/80 backdrop-blur-[5px] shadow-[inset_0_-1px_0_0_rgba(0,0,0,0.2)];
+  }
+
+  .hamburger-line{
+      @apply w-[30px] h-[2px] my-2 block bg-black;
+  }
+
+  .hamburger-active > span:nth-child(1){ 
+    @apply  rotate-45;
+  }
+  .hamburger-active > span:nth-child(3){ 
+    @apply  -rotate-45;
+  }
+  .hamburger-active > span:nth-child(2){ 
+    @apply opacity-0;
+  }
+}
