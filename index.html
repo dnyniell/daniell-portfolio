@@ -388,6 +388,26 @@
      </footer>
      <!-- Footer Ends -->
     <script src="js/script.js"></script>
+    <script>
+        document.getElementById('contactForm')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const form = e.currentTarget;
+        const res = await fetch(form.action, {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' }, // ask Formspree for JSON
+            body: new FormData(form)
+        });
+        if (res.ok) {
+            // Success: redirect manually
+            window.location.href = 'https://dnyniell.github.io/daniell-portfolio/thanks.html';
+        } else {
+            // Show why it failed
+            const data = await res.json().catch(()=>({}));
+            alert((data.errors && data.errors.map(e=>e.message).join('\n')) || 'Submission failed. Please check your inputs.');
+        }
+        });
+</script>
+
 </body>
 
 </html>
